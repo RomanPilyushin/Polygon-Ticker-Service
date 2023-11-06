@@ -1,35 +1,52 @@
 package com.example.restfulpolygon;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.*;
 
 @Entity
-@Data // Lombok annotation to create getters, setters, toString, equals, and hashCode methods
-@NoArgsConstructor // Lombok annotation to create a no-args constructor
+@Getter
+@Setter
 public class DailyOpenClose {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore // This will prevent 'id' from being included in the JSON
     private Long id;
 
+    @NotBlank(message = "Symbol is mandatory")
     private String symbol;
 
-    @Column(name = "from_date") // assuming the column is named 'from_date' because 'from' is a reserved keyword
-    @JsonProperty("from") // Specify the JSON property name
-    private String fromDate;
+    @NotBlank(message = "Date is mandatory")
+    // If you're using a String for the date, ensure it's in the correct format
+    // For actual date types, Hibernate will take care of the validation for correct date format
+    private String from;
 
+    @NotNull(message = "Open price cannot be null")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Open price must be greater than 0")
     private double open;
-    private double high;
-    private double low;
+
+    @NotNull(message = "Close price cannot be null")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Close price must be greater than 0")
     private double close;
+
+    @NotNull(message = "High price cannot be null")
+    @DecimalMin(value = "0.0", inclusive = false, message = "High price must be greater than 0")
+    private double high;
+
+    @NotNull(message = "Low price cannot be null")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Low price must be greater than 0")
+    private double low;
+
+    @NotNull(message = "Volume cannot be null")
+    @Min(value = 1, message = "Volume must be greater than 0")
     private double volume;
+
     private double afterHours;
     private double preMarket;
+
+    @NotBlank(message = "Status is mandatory")
     private String status;
 
-    // Lombok will handle the getters and setters
+    // Constructors, getters, and setters...
 }

@@ -34,8 +34,7 @@ dependencies {
     // https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api
     implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
     implementation ("com.fasterxml.jackson.core:jackson-databind")
-
-
+    implementation ("jakarta.validation:jakarta.validation-api:3.0.0")
 }
 
 tasks.withType<Test> {
