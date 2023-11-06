@@ -8,12 +8,17 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class DailyOpenCloseController {
 
     private final ObjectMapper objectMapper;
     private final RestTemplate restTemplate;
+
+    @Autowired
+    private DailyOpenCloseService service;
 
     @Value("${polygon.api.key}")
     private String apiKey;
@@ -49,4 +54,43 @@ public class DailyOpenCloseController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error fetching data");
         }
     }
+
+    @GetMapping
+    public List<DailyOpenClose> getAllDailyOpenClose() {
+        return service.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DailyOpenClose> getDailyOpenCloseById(@PathVariable Long id) {
+        return service.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public DailyOpenClose createDailyOpenClose(@RequestBody DailyOpenClose dailyOpenClose) {
+        return service.save(dailyOpenClose);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<DailyOpenClose> updateDailyOpenClose(@PathVariable Long id, @RequestBody DailyOpenClose dailyOpenClose) {
+        return service.findById(id)
+                .map(existing -> {
+                    dailyOpenClose.setId(existing.getId());
+                    service.save(dailyOpenClose);
+                    return ResponseEntity.ok(dailyOpenClose);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteDailyOpenClose(@PathVariable Long id) {
+        return service.findById(id)
+                .map(entity -> {
+                    service.delete(entity.getId());
+                    return ResponseEntity.ok().build();
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }
