@@ -19,7 +19,7 @@ Before utilizing this service, ensure you have:
 ## Setup and Installation
 Clone the repository and build the project using Gradle:
 ```shell
-git clone https://github.com/YourUsername/PolygonTickerService.git
+git clone https://github.com/RomanPilyushin/Polygon-Ticker-Service.git
 cd polygon-ticker-information-service
 ./gradlew build
 ```
