@@ -1,7 +1,7 @@
-# Polygon Ticker Information Service
+# Polygon Ticker Service
 
 ## Description
-The Polygon Ticker Information Service is a Java-based RESTful API service designed to provide detailed financial information about stock tickers. Utilizing the Polygon.io API, it offers insights into various aspects of stocks including company details, market capitalization, and other financial metrics crucial for investors and financial analysts.
+The Polygon Ticker Service is a Java-based RESTful API service designed to provide detailed financial information about stock tickers. Utilizing the Polygon.io API, it offers insights into various aspects of stocks including company details, market capitalization, and other financial metrics crucial for investors and financial analysts.
 
 ## Features
 - Real-time access to detailed ticker information.
