@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 public class TickerDetailsResponse {
@@ -29,7 +31,7 @@ public class TickerDetailsResponse {
         private String currencyName;
         private String cik;
         @SerializedName("market_cap")
-        private long marketCap;
+        private BigDecimal marketCap;
         @SerializedName("phone_number")
         private String phoneNumber;
         private Address address;

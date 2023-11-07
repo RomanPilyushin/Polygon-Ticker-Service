@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 
+import java.math.BigDecimal;
+
 @Entity
 @Getter
 @Setter
@@ -36,7 +38,7 @@ public class TickerDetailsEntity {
     private String shareClassFigi;
 
     @Column(name = "market_cap")
-    private Long marketCap;
+    private BigDecimal marketCap;
 
     @Column(name = "phone_number")
     private String phoneNumber;

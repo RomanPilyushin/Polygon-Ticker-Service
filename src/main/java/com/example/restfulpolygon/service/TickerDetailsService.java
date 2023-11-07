@@ -1,15 +1,14 @@
 package com.example.restfulpolygon.service;
 
 import com.example.restfulpolygon.entity.TickerDetailsEntity;
-import com.example.restfulpolygon.repository.TickerDetailsRepository;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.math.BigDecimal;
 
 @Service
 public class TickerDetailsService {
@@ -35,10 +34,13 @@ public class TickerDetailsService {
     }
 
     private TickerDetailsEntity parseResponseToEntity(String jsonResponse) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(BigDecimal.class, new BigDecimalDeserializer())
+                .create();
         TickerDetailsResponse response = gson.fromJson(jsonResponse, TickerDetailsResponse.class);
         return mapResponseToEntity(response.getResults());
     }
+
 
     private TickerDetailsEntity mapResponseToEntity(TickerDetailsResponse.Results results) {
         if (results == null) {
