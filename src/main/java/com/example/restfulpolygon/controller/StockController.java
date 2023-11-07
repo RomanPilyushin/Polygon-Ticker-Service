@@ -1,5 +1,7 @@
-package com.example.restfulpolygon;
+package com.example.restfulpolygon.controller;
 
+import com.example.restfulpolygon.entity.DailyOpenCloseEntity;
+import com.example.restfulpolygon.service.DailyOpenCloseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +17,7 @@ public class StockController {
     }
 
     @GetMapping("/open-close/{ticker}/{date}")
-    public DailyOpenClose getDailyOpenClose(@PathVariable String ticker, @PathVariable String date) {
+    public DailyOpenCloseEntity getDailyOpenClose(@PathVariable String ticker, @PathVariable String date) {
         return service.getDailyOpenClose(ticker, date);
     }
 }

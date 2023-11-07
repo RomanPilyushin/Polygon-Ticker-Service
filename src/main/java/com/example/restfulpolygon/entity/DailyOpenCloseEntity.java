@@ -1,14 +1,17 @@
-package com.example.restfulpolygon;
+package com.example.restfulpolygon.entity;
 
 import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @Setter
-public class DailyOpenClose {
+@Table(name = "daily_open_close")
+public class DailyOpenCloseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +20,8 @@ public class DailyOpenClose {
     @NotBlank(message = "Symbol is mandatory")
     private String symbol;
 
-    @NotBlank(message = "Date is mandatory")
-    // If you're using a String for the date, ensure it's in the correct format
-    // For actual date types, Hibernate will take care of the validation for correct date format
+    @NotNull(message = "Date is mandatory")
+    @Column(name = "`date`")
     private String from;
 
     @NotNull(message = "Open price cannot be null")

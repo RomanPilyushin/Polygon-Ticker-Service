@@ -1,4 +1,4 @@
-package com.example.restfulpolygon;
+package com.example.restfulpolygon.config;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-public class RestTemplateConfig {
+public class RestClientConfig {
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {

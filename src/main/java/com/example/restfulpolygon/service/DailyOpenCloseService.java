@@ -1,5 +1,7 @@
-package com.example.restfulpolygon;
+package com.example.restfulpolygon.service;
 
+import com.example.restfulpolygon.entity.DailyOpenCloseEntity;
+import com.example.restfulpolygon.repository.DailyOpenCloseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -24,28 +26,28 @@ public class DailyOpenCloseService {
         this.restTemplate = restTemplate;
     }
 
-    public DailyOpenClose getDailyOpenClose(String ticker, String date) {
+    public DailyOpenCloseEntity getDailyOpenClose(String ticker, String date) {
         String url = String.format("https://api.polygon.io/v1/open-close/%s/%s?adjusted=true&apiKey=%s",
                 ticker, date, apiKey);
 
-        ResponseEntity<DailyOpenClose> response = restTemplate.getForEntity(url, DailyOpenClose.class);
+        ResponseEntity<DailyOpenCloseEntity> response = restTemplate.getForEntity(url, DailyOpenCloseEntity.class);
         return response.getBody();
     }
 
-    public List<DailyOpenClose> findAll() {
+    public List<DailyOpenCloseEntity> findAll() {
         return repository.findAll();
     }
 
-    public Optional<DailyOpenClose> findById(Long id) {
+    public Optional<DailyOpenCloseEntity> findById(Long id) {
         return repository.findById(id);
     }
 
-    public DailyOpenClose save(DailyOpenClose dailyOpenClose) {
-        return repository.save(dailyOpenClose);
+    public DailyOpenCloseEntity save(DailyOpenCloseEntity dailyOpenCloseEntity) {
+        return repository.save(dailyOpenCloseEntity);
     }
 
-    public void update(DailyOpenClose dailyOpenClose) {
-        repository.save(dailyOpenClose);
+    public void update(DailyOpenCloseEntity dailyOpenCloseEntity) {
+        repository.save(dailyOpenCloseEntity);
     }
 
     public void delete(Long id) {
