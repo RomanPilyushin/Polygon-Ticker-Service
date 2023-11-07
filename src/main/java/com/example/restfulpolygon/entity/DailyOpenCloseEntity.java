@@ -5,8 +5,6 @@ import lombok.Setter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
-import java.time.LocalDate;
-
 @Entity
 @Getter
 @Setter

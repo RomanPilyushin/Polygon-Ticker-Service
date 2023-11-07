@@ -31,10 +31,14 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation ("com.github.polygon-io:client-jvm:v5.1.0")
-    // https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api
     implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
     implementation ("com.fasterxml.jackson.core:jackson-databind")
     implementation ("jakarta.validation:jakarta.validation-api:3.0.0")
+    implementation ("org.springframework.boot:spring-boot-starter-thymeleaf")
+    implementation ("com.google.code.gson:gson:2.10.1")
+
+
+
 }
 
 tasks.withType<Test> {
