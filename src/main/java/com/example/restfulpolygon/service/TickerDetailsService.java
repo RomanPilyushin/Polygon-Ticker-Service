@@ -58,7 +58,7 @@ public class TickerDetailsService {
         entity.setActive(results.isActive());
         entity.setCurrencyName(results.getCurrencyName());
         entity.setCik(results.getCik());
-        //entity.setMarketCap(results.getMarketCap());
+        entity.setMarketCap(results.getMarketCap());
         entity.setPhoneNumber(results.getPhoneNumber());
 
         // Mapping the address, which is a nested object
